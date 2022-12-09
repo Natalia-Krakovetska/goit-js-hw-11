@@ -1,0 +1,95 @@
+:root {
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-duration: 250ms;
+  }
+  form {
+    background-color: blue;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  input {
+  color: black;
+  width: 300px;
+  height: 33px;
+  border: #000 3px solid;
+  }
+  button {
+   
+        position: relative;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: -1px -1px #000;
+        user-select: none;
+        padding: .8em 2em;
+        outline: none;
+        background-color: #000;
+        background-image: linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%), radial-gradient(190% 100% at 50% 0%, rgba(255,255,255,.7) 0%, rgba(255,255,255,.5) 50%, rgba(0,0,0,0) 50%);
+        background-repeat: no-repeat;
+        background-size: 200% 100%, auto;
+        background-position: 200% 0, 0 0;
+        box-shadow: rgba(0,0,0,.3) 0 2px 5px; 
+
+
+     }
+     button:hover {
+        transition: .5s linear;
+        background-position: -200% 0, 0 0;
+        }
+        button:active {
+            top: 1px;
+            box-shadow: none;
+          }
+  .gallery {
+    display: grid;
+    max-width: 1140px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: 240px;
+    grid-gap: 60px;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .gallery__item {
+    position: relative;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  }
+  
+  .gallery__image:hover {
+    transform: scale(1.03);
+  }
+  
+  .gallery__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform var(--animation-duration) var(--timing-function);
+  }
+  
+  .gallery__link {
+    display: block;
+    text-decoration: none;
+    height: 100%;
+  }
+  
+  .gallery__link:hover {
+    cursor: zoom-in;
+  }
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+  }
+  .load-more{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
