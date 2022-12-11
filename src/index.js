@@ -34,14 +34,24 @@ function onSubmitForm(evt) {
   }
 
   getUser(searchQuery, page).then(response => {
+    loadMoreBtn.style.display = 'none';
+    console.log(response);
+    total += response.data.hits.length;
     if (!response.data.hits.length) {
       loadMoreBtn.style.display = 'none';
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+      return;
     }
     createmarkUp(response.data.hits);
     loadMoreBtn.style.display = 'block';
+    if (total === Number(response.data.total)) {
+      loadMoreBtn.style.display = 'none';
+      Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
+    }
   });
 }
 
@@ -94,21 +104,28 @@ function createmarkUp(arr) {
 }
 
 function onLoadMore() {
+  loadMoreBtn.style.display = 'none';
   page += 1;
   getUser(searchQuery, page)
     .then(response => {
-      Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
       total += response.data.hits.length;
-
-      if (total === Number(response.data.totalHits)) {
-        loadMoreBtn.style.display = 'none';
+      if (total === response.data.totalHits) {
         Notify.failure(
           "We're sorry, but you've reached the end of search results."
         );
+        loadMoreBtn.style.display = 'none';
+        return;
       }
+      Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
+      loadMoreBtn.style.display = 'block';
       createmarkUp(response.data.hits);
     })
-    .then(() => simpleligthbox.refresh());
+    .then(() => simpleligthbox.refresh())
+    .catch(err => {
+      console.log(err);
+      Notiflix.Notify.success('Sol lucet omnibus');
+      boxGallery.innerHTML = '';
+    });
 }
 const simpleligthbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
