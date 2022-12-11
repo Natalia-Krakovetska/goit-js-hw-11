@@ -131,7 +131,6 @@ const simpleligthbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
 function clearGalleryList() {
   boxGallery.innerHTML = '';
 }
