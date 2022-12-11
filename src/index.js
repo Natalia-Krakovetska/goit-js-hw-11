@@ -13,7 +13,10 @@ loadMoreBtn.style.display = 'none';
 let page = 0;
 let total = 0;
 let searchQuery = '';
-
+const simpleligthbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 function onSubmitForm(evt) {
   evt.preventDefault();
   loadMoreBtn.style.display = 'none';
@@ -127,10 +130,7 @@ function onLoadMore() {
       boxGallery.innerHTML = '';
     });
 }
-const simpleligthbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+
 function clearGalleryList() {
   boxGallery.innerHTML = '';
 }
